@@ -1,9 +1,9 @@
 package ar.pb2.unlam.edu;
 
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Batalla {
+
     Set <Heroe> heroes = new TreeSet<>();
     Set <Villano> villanos = new TreeSet<>();
 
@@ -15,8 +15,8 @@ public class Batalla {
         heroes.add(nuevoHeroe);
     }
 
-    public Set<Heroe> getHeroes() {
-        return heroes;
+    public TreeSet<Heroe> getHeroes() {
+        return (TreeSet<Heroe>) heroes;
     }
 
     public Set<Villano> getVillanos() {
@@ -30,4 +30,29 @@ public class Batalla {
     public Integer obtenerCantidadDeHeroes() {
         return heroes.size();
     }
+
+    public Avenger EmpezarBatalla(Avenger heroe, Avenger villano) throws NoSePuedeEmpateException {
+        Avenger ganador = null;
+
+        if(heroe.getPoderInicial() == villano.getPoderInicial()){
+            throw new NoSePuedeEmpateException("Ambos avengers tienen el mismo poder");
+        }
+
+        if(heroe.getPoderInicial() > villano.getPoderInicial()){
+            agregarUnHeroe((Heroe)heroe);
+            ganador = heroe;
+        }else{
+            agregarUnVillano((Villano)villano);
+            ganador = villano;
+        }
+
+        return ganador;
+    }
+
+    public TreeSet<Villano> ordenarVillanosPor(Comparator criterio){
+        TreeSet<Villano> villanosOrdenados = new TreeSet<Villano>(criterio);
+        villanosOrdenados.addAll(villanos);
+        return villanosOrdenados;
+    }
 }
+

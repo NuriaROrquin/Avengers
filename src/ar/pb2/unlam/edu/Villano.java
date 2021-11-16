@@ -1,16 +1,24 @@
 package ar.pb2.unlam.edu;
 
-public class Villano implements Comparable<Villano> {
-    public String nombre;
-    public Integer poderInicial;
+public class Villano extends Avenger implements Comparable<Villano> {
 
     public Villano(String nombre, Integer poderInicial) {
-        this.nombre = nombre;
-        this.poderInicial = poderInicial;
+        super(nombre, poderInicial);
+    }
+
+    public Villano(String nombre, Integer poderInicial, Gema gema) {
+        super(nombre, poderInicial, gema);
     }
 
     @Override
     public int compareTo(Villano villano) {
-        return this.nombre.compareTo(villano.nombre);
+        return super.getNombre().compareTo(villano.getNombre());
     }
+
+    @Override
+    public String toString() {
+        return super.getNombre();
+    }
+
+
 }

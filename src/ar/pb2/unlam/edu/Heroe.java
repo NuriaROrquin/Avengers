@@ -1,17 +1,24 @@
 package ar.pb2.unlam.edu;
 
-public class Heroe implements Comparable<Heroe> {
-
-    public String nombre;
-    public Integer poderInicial;
+public class Heroe extends Avenger implements Comparable<Heroe> {
 
     public Heroe(String nombre, Integer poderInicial) {
-        this.nombre = nombre;
-        this.poderInicial = poderInicial;
+        super(nombre, poderInicial);
+    }
+
+    public Heroe(String nombre, Integer poderInicial, Gema gema) {
+        super(nombre, poderInicial, gema);
     }
 
     @Override
     public int compareTo(Heroe heroe) {
-        return this.nombre.compareTo(heroe.nombre);
+        return super.getNombre().compareTo(heroe.getNombre());
     }
+
+    @Override
+    public String toString() {
+        return super.getNombre();
+    }
+
+
 }
